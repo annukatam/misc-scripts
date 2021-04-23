@@ -11,11 +11,11 @@ ping_func(){
 # first initiate the values
 if ping_func
 then
-	CONNECTED=true
-	echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "the internet connection is available."
+	CONNECTION=up
+	echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "the internet connection is UP."
 else
-	CONNECTED=false
-	say "no internet connection."
+	CONNECTION=down
+	echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "the internet connection is DOWN."
 fi
 
 
@@ -25,20 +25,20 @@ do
 
 	if ping_func
 	then
-		if [ $CONNECTED == false ]
+		if [ $CONNECTION == down ]
 		then
 			echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "the internet connection was restored."
 		fi
-		CONNECTED=true;
+		CONNECTION=up;
 	else
-		if [ $CONNECTED == true ]
+		if [ $CONNECTION == up ]
 		then
 			let "LOST_COUNT += 1"
 			echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "the internet connection was lost."
 		fi
-		CONNECTED=false;
+		CONNECTION=down;
 	fi
 
-	echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "connection status -> " $CONNECTED " lost count -> " $LOST_COUNT
+	echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "connection status -> " $CONNECTION " lost count -> " $LOST_COUNT
 	sleep 1
 done
