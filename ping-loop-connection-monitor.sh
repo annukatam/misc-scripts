@@ -40,5 +40,5 @@ do
 	fi
 
 	echo "$(date +'%d/%m/%Y %H:%M:%S:%3N')" "connection status -> " $CONNECTION " lost count -> " $LOST_COUNT
-	sleep 1
+	sleep 0.4
 done
